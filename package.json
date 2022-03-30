@@ -18,9 +18,7 @@
         "dmg"
       ],
       "files": [
-        "!certificates/*",
-        "!src/*.js",
-        "!src/pages/*.js"
+        "!certificates/*"
       ]
     },
     "win": {
@@ -31,9 +29,7 @@
       "certificateFile": "certificates/cert.p12",
       "certificatePassword": "5C6kHCbpjz5Cb6B4",
       "files": [
-        "!certificates/*",
-        "!src/*.js",
-        "!src/pages/*.js"
+        "!certificates/*"
       ]
     },
     "portable": {
