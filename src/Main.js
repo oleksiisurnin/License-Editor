@@ -116,6 +116,13 @@ const template = [
           const { shell } = require('electron')
           await shell.openExternal('https://instagram.com/alexeysurnin_')
         }
+      },
+      {
+        label: 'Open Source',
+        click: async () => {
+          const { shell } = require('electron')
+          await shell.openExternal('https://github.com/AlexeySurnin/License-Editor')
+        }
       }
     ]
   }
