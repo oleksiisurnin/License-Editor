@@ -1,0 +1,223 @@
+:root {
+    --main-color: #3b19e6;
+    --second-color: #00ff00;
+}
+
+:focus {
+    outline: none;
+}
+
+@font-face {
+    font-family: "FuturaMedium";
+    src: url("../fonts/futura_medium_bt.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+html {
+    font-size: 14px;
+    user-select: none;
+}
+
+body {
+    font-family: "FuturaMedium";
+    color: var(--main-color);
+    margin: 20px 20px 0 20px ;
+}
+
+.text {
+    margin: 20px 0 0 0;
+    font-size: 15px;
+}
+
+.vl {
+    border-left: 1px solid var(--main-color);
+    height: 20px;
+}
+
+.error-wrap {
+    background-color: #FDEAE6;
+    width: 50vw;
+    padding: 10px 20px;
+}
+
+.error {
+    color: #2F2422;
+    font-size: 14px;
+}
+
+.sticky {
+    position: fixed;
+    z-index: 99;
+    background: white;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 30px 0 30px 60px;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 30px 0 0 0;
+}
+
+.nav {
+    display: inline;
+    margin-right: 50px;
+}
+
+.nav a, .new-item, .welcome-link {
+    text-decoration: none;
+    color: var(--main-color);
+    border-top: 1px solid var(--main-color);
+    padding-top: 3px;
+}
+
+.nav a:hover, .nav a:focus, .active-nav, .new-item:hover, .new-item:focus, .welcome-link:hover, .welcome-link:focus {
+    text-decoration: none;
+    color: var(--second-color) !important;
+    border-top: 1px solid var(--second-color) !important;
+    padding-top: 3px;
+}
+
+.content {
+    margin-top: 60px;
+}
+
+.title {
+    font-size: 24px;
+}
+
+.icon {
+    margin: 10px 0 7px 0;
+    height: 12px;
+    width: 12px;
+    cursor: pointer;
+}
+
+.wrap {
+    background-color: white;
+    border: 1px solid var(--main-color);
+    margin-left: 1px !important;
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--main-color) !important;
+}
+
+.border-item {
+    border: 1px solid var(--main-color) !important;
+}
+
+input, input:hover, input:focus{
+    color: var(--main-color);
+    outline:none;
+    border: none;
+    width: 100%;
+}
+
+.main-input {
+    border-bottom: 1px solid var(--main-color) !important;
+    font-size: 14px;
+    text-align: center;
+}
+
+.without-value, .without-value:hover, .without-value:focus {
+    color: #6c757d
+}
+
+select, select:hover, select:focus {
+    color: var(--main-color);
+    border: none;
+    width: 100%;
+    background: url('../icons/arrow.svg') no-repeat right center;
+    background-size: 16px 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+}
+
+.footer {
+    font-size: 12px;
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+.phone {
+    position: sticky;
+    top: 0px;
+    background: url("../images/phone.png") no-repeat;
+    background-size: 220px auto;
+    margin-top: 60px;
+    z-index: 999;
+    height: 80vh;
+}
+
+.preview-wrap {
+    position: relative;
+}
+
+.preview {
+    position: absolute;
+    width: 200px;
+    margin: 45px 0 0 -1%;
+}
+
+.preview-title {
+    font-size: 20px;
+    word-break: break-all;
+}
+
+.prev-title {
+    color: #133667;
+}
+
+.prev-autor {
+    color: #8e8e8e;
+}
+
+.prev-hr {
+    color: #e2e2e3;
+}
+
+.preview-content {
+    font-size: 8px;
+    height: 381px;
+    overflow-y: auto;
+    word-break: break-all;
+    line-height: 1.4;
+    padding: 0 13px;
+}
+
+.welcome-page {
+    font-size: 20px;
+}
+
+.welcome-title {
+    font-size: 10vw;
+    margin-top: 10%;
+}
+
+.welcome-text {
+    margin-top: -3%;
+}
+
+@media (max-width: 768px) {
+    .phone {
+        display: none !important;
+    }
+}
+
+@media (max-width: 880px) {
+    .nav {
+        margin-right: 30px;
+    }
+}
+
+@media (max-width: 730px) {
+    .nav {
+        margin-right: 20px;
+    }
+}

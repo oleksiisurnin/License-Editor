@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        "certificates": true,
+        "release-builds": true
+    }
+}

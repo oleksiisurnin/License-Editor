@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';"/>
+    <link rel="stylesheet" type="text/css" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/style/style.css">
+
+</head>
+<body class="welcome-page">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 welcome-title text-center">License Editor</div>
+        <div class="col-10 text-right welcome-text">by <a type="button" onclick="openInstagram()" style="text-decoration: underline;">Alexey Surnin</a></div>
+    </div>
+    <div class="row">
+        <div class="offset-2 col-8 text-center mt-5">
+            Select .arproj file to edit licenses. It’s located in your Spark AR project folder. 
+            <br /><br />
+            Make a backup first, because editing licenses may <strong>break the project</strong> in some cases.
+            <br /><br />
+            <strong>DISCLAIMER</strong>
+            <br />
+            This is an unofficial tool for filter licenses editing. We are not responsible for any consequences that
+            may happen and any results you can get due to license editing.
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center mt-5">
+            <a class="welcome-link" type="button" onclick="selectFile()">SELECT.ARPROJ</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const shell = require('electron').shell;
+    
+    function selectFile() {
+        const { ipcRenderer } = require('electron');
+        ipcRenderer.send('select-file');
+    }
+
+    function openInstagram() {
+        shell.openExternal('https://instagram.com/alexeysurnin_')
+    }
+</script>
+
+</body>
+</html>

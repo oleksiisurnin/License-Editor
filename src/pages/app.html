@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';"/>
+    <link rel="stylesheet" type="text/css" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/style/style.css">
+
+</head>
+<body>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <ul class="nav-wrap">
+                <li class="nav nav-item"><a class="active-nav" href="#" name="licenses">LICENSES</a></li>
+                <li class="nav nav-item"><a href="#" name="assets-attr">ASSET ATTRIBUTIONS</a></li>
+                <li class="nav nav-item"><a href="#" name="assets">ASSETS</a></li>
+                <li class="nav nav-vl"><a class="vl"></a></li>
+                <li class="nav"><a type="button" id="open">OPEN</a></li>
+                <li class="nav"><a type="button" id="save">SAVE</a></li>
+                <li class="nav"><a type="button" id="saveAs">SAVE AS</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="ml-5 col-sm-10 col-md-6 col-lg-6 col-xl-7">
+            <div class="row content" name="licenses">
+                <div class="col-8 title">License List</div>
+                <div class="col-4 text-right">
+                    <a type="button" class="new-item new-item-licenses">Add New</a>
+                </div>
+                <div class="col-12 text">
+                    Here you can edit licenses. Type a license name and leave a link to the license document.
+                    If you don’t know what “slug” is, type the word “License”. Don’t forget to assign at least
+                    one asset attribution to it. You can also type here any text you want and leave any link,
+                    but make sure that it’s not against the Facebook Policy and Rules.
+                </div>
+            </div>
+
+            <div class="row content" name="assets-attr" hidden="true">
+                <div class="col-8 title">Asset Attributions</div>
+                <div class="col-4 text-right">
+                    <a type="button" class="new-item new-item-attr">Add New</a>
+                </div>
+                <div class="col-12 text">
+                    Here you can assign asset attributions to licenses. Each license should have at least one
+                    asset attribution under it. Create new asset attribution for each asset, specify the asset's
+                    name, author and URL that will open when the user clicks at this license item. Select the
+                    corresponding asset and assign a license using dropdown lists.
+                </div>
+            </div>
+
+            <div class="row content" name="assets" hidden="true">
+                <div class="col-9 title">Assets</div>
+                <div class="col-12 text">
+                    This is a list of all assets in your project. To include any of these in a license, see “Asset attributions” page.
+                </div>
+            </div>
+
+            <div id="listContent" class="sortable"></div>
+
+            <div class="row footer">
+                <div class="col-12 text-right">powered by areyes.sdk</div>
+            </div>
+        </div>
+        <div class="ml-5 col-md-4 col-lg-4 col-xl-4 phone">
+            <div class="preview-wrap">
+                <div class="row preview">
+                    <div class="col-12 preview-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    require('./app.js')
+</script>
+
+</body>
+</html>
