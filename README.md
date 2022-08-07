@@ -21,7 +21,7 @@ To view filter licenses:
 
 Demo video: https://youtu.be/lWb4e1NrHlo
 
-Gumroad page: https://alexeysurnin.gumroad.com/l/license-editor
+Gumroad page: https://oleksiisurnin.gumroad.com/l/license-editor
 
 ## DISCLAIMER:
 
@@ -29,7 +29,7 @@ This is an unofficial tool for filter licenses editing. We are not responsible f
 
 # Install
 ```
-git clone https://github.com/AlexeySurnin/License-Editor.git
+git clone https://github.com/oleksiisurnin/License-Editor.git
 
 cd License-Editor
 
