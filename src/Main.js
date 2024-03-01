@@ -139,7 +139,7 @@ function createWindow () {
         webPreferences: {
         nodeIntegration: true,
         webSecurity: false,
-        preload: path.join(__dirname, "tools/SentryLoader.js"),
+       //  preload: path.join(__dirname, "tools/SentryLoader.js"),
         },
         title: "License Editor by Alexey Surnin v" + app.getVersion()
     })

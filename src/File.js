@@ -6,7 +6,7 @@ class File {
     static select(callback) {
         dialog.showOpenDialog({
             filters: [
-                {name: 'Spark AR Project', extensions: ['arproj', 'arblock']}
+                {name: 'Spark AR Project', extensions: ['arproj', 'arblock', 'zip']}
             ],
             properties: ['openFile']
           }).then(result => {
@@ -37,13 +37,13 @@ class File {
     }
 
     static open(path) {
-        BrowserWindow.getFocusedWindow().loadFile('src/pages/app.html', {query: {"path": path}});
+        BrowserWindow.getFocusedWindow()?.loadFile('src/pages/app.html', {query: {"path": path}});
 
         Menu.getApplicationMenu()
-            .items
+            ?.items
             .filter(menu => menu.label === 'File')[0]
             .submenu
-            .items
+            ?.items
             .filter(menu => menu.label === 'Save' || menu.label === 'Save As...' || menu.label === 'Reload')
             .forEach(menu => {
                 menu.enabled = true;

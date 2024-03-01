@@ -1,5 +1,6 @@
 //@ts-check
-
+const fs = require('fs');
+const path = require('path');
 const AdmZip = require('adm-zip');
 const JSONbig = require('json-bigint');
 const { v4: uuidv4 } = require('uuid');
@@ -10,54 +11,97 @@ class Arproj {
     constructor(path) {
         this.path = path;
 
-        let unzip = new AdmZip(path);
+
         let mainJson;
         let files = [];
 
-        unzip.getEntries().forEach(function(entry) {
-            if (entry.entryName === 'main.json') {
-                mainJson = unzip.readAsText(entry);
-            }
-            else {
-                files.push(entry);
-            }
-        });
+        this.newVar = true
 
-        this.mainJson = JSONbig.parse(mainJson);
-        this.files = files;
-
-        this.lastIndex = 0;
-        this.uuid = uuidv4();
-
-        let readObject = (object) => {
-            for (var key in object) {
-                if (typeof object[key] === 'object')
-                    readObject(object[key]);
-                else if (key === 'identifier') {
-                    let index = parseInt(object[key].replace(object['modelName'], '').split('-')[0]);
-                    if (this.lastIndex < index) this.lastIndex = index;
+        try {
+            this.mainJson = fs.readFileSync(path, 'utf8');
+            this.mainJson = JSONbig.parse(this.mainJson)
+            this.lastIndex = 0;
+            this.uuid = uuidv4();
+            let readObject = (object) => {
+                for (var key in object) {
+                    if (typeof object[key] === 'object')
+                        readObject(object[key]);
+                    else if (key === 'identifier') {
+                        let index = parseInt(object[key].replace(object['modelName'], '').split('-')[0]);
+                        if (this.lastIndex < index) this.lastIndex = index;
+                    }
                 }
+                
             }
-            
-        }
+    
+            readObject(this.mainJson);
 
-        readObject(this.mainJson);
+          } catch (err) {
+            this.newVar = false
+            let unzip = new AdmZip(path);
+            unzip.getEntries().forEach(function(entry) {
+                if (entry.entryName === 'main.json') {
+                    mainJson = unzip.readAsText(entry);
+                }
+                else {
+                    files.push(entry);
+                }
+            });
+    
+            this.mainJson = JSONbig.parse(mainJson);
+            this.files = files;
+            this.lastIndex = 0;
+            this.uuid = uuidv4();
+    
+            let readObject = (object) => {
+                for (var key in object) {
+                    if (typeof object[key] === 'object')
+                        readObject(object[key]);
+                    else if (key === 'identifier') {
+                        let index = parseInt(object[key].replace(object['modelName'], '').split('-')[0]);
+                        if (this.lastIndex < index) this.lastIndex = index;
+                    }
+                }
+                
+            }
+    
+            readObject(this.mainJson);
+          }
+        
+
     }
 
     save(path) {
-        let zip = new AdmZip();
+        if (this.newVar) {
+            fs.writeFile(path, Buffer.from(JSONbig.stringify(this.mainJson), "utf-8"), (err) => {
+            if (err) {
+                console.error('error writing file:', err);
+                return;
+            }});
+        } else {
+            let zip = new AdmZip();
 
-        zip.addFile('main.json', Buffer.from(JSONbig.stringify(this.mainJson), "utf-8"));
-        
-        this.files.forEach(file => {
-            zip.addFile(file.entryName, file.getData());
-        });
+            zip.addFile('main.json', Buffer.from(JSONbig.stringify(this.mainJson), "utf-8"));
+            
+            this.files.forEach(file => {
+                zip.addFile(file.entryName, file.getData());
+            });
+    
+            zip.writeZip(path);
+        }
 
-        zip.writeZip(path);
     }
 
     getModelChildrenByModelName(modelName, array = this.mainJson['children']) {
-        let children = array.filter(array => array.modelName === modelName)[0]['children'];
+
+        let arrayFiltered = array.filter(array => array.modelName === modelName)
+        let children
+        if (arrayFiltered.length == 0) {
+            children = undefined
+        } else {
+            children = arrayFiltered[0]['children'];
+        }
+
         return children === undefined ? [] : children;
     }
 
@@ -68,7 +112,6 @@ class Arproj {
      */
     getModelId(modelName) {
         let id;
-
         this.mainJson['children'].forEach((value, index) => {
             if (value.modelName === modelName) id = index;
         });

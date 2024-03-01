@@ -6,6 +6,7 @@ const { Arproj } = require('./Arproj.js');
 
 class Arp {
     constructor(path) {
+        
         this.path = path;
 
         let unzip = new AdmZip(path);

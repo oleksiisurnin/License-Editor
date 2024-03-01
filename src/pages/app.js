@@ -1,3 +1,4 @@
+
 window.$ = window.jQuery = require('jquery');
 require('jquery-ui-dist/jquery-ui');
 const { Arproj } = require('../Arproj.js');
@@ -18,6 +19,7 @@ ipcRenderer.on('save', (event, path) => {
 });
 
 function save(path) {
+
     proj.updateModelChildren('licenses_model', licenses);
     proj.updateModelChildren('asset_attributions_model', assetsAttr);
 
@@ -32,8 +34,7 @@ $(document).ready(function () {
             modelName: 'license_model',
             identifier: proj.generateIdentifier('license_model')
         }
-
-        
+    
         drawLicenseItem(i);
 
         $('html, body').animate({
